@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraLerpToTransform : MonoBehaviour
 {
     public Transform camTarget;
+    [Range(2.5f,10f)]
     public float trackingSpeed;
     public float minX;
     public float minY;

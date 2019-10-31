@@ -14,7 +14,7 @@ public class SoyBoyController : MonoBehaviour
     private Animator animator;
 
     public bool isJumping;
-    public float jumpSpeed = 8f;
+    public float jumpSpeed = 1f;
     private float rayCastLengthCheck = 0.005f;
     private float width;
     private float height;
@@ -22,7 +22,7 @@ public class SoyBoyController : MonoBehaviour
     public float jumpDurationThreshold = 0.25f;
     private float jumpDuration;
     public float airAccel = 3f;
-    public float jump = 14f;
+    public float jump = 4f;
 
     public AudioClip runClip;
     public AudioClip jumpClip;
