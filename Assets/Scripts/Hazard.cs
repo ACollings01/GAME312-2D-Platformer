@@ -27,6 +27,7 @@ public class Hazard : MonoBehaviour
             Instantiate(playerDeathPrefab, collision.contacts[0].point, Quaternion.identity);
             spriteRenderer.sprite = hitSprite;
             Destroy(collision.gameObject);
+            GameManager.instance.RestartLevel(1.25f);
         }
     }
 
