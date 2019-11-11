@@ -7,6 +7,8 @@ public class Timer : MonoBehaviour
 {
     private Text timerText;
 
+	public decimal time;
+
     private void Awake()
     {
         timerText = GetComponent<Text>();
@@ -20,6 +22,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerText.text = System.Math.Round((decimal)Time.timeSinceLevelLoad, 2).ToString();
+		time = System.Math.Round((decimal) Time.timeSinceLevelLoad, 2);
+        timerText.text = time.ToString();
     }
 }

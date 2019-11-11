@@ -16,18 +16,9 @@ public class Goal : MonoBehaviour
                 audioSource.PlayOneShot(goalClip);
             }
             GameManager.instance.RestartLevel(0.5f);
-        }
-    }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+			var timer = FindObjectOfType<Timer>();
+			GameManager.instance.SaveTime(timer.time);
+		}
     }
 }
