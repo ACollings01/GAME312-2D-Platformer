@@ -6,7 +6,7 @@ public class CameraLerpToTransform : MonoBehaviour
 {
     public Transform camTarget;
     [Range(2.5f,10f)]
-    public float trackingSpeed;
+    public float trackingSpeed = 7.8f;
     public float minX;
     public float minY;
     public float maxX;
