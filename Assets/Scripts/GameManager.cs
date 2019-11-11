@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RestartLevelDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Level 1");
     }
 
     // Start is called before the first frame update

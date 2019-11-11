@@ -19,7 +19,27 @@ public class CameraLerpToTransform : MonoBehaviour
             var newPos = Vector2.Lerp(transform.position, camTarget.position, Time.deltaTime * trackingSpeed);
             var camPosition = new Vector3(newPos.x, newPos.y, -10f);
             var v3 = camPosition;
-            var clampX = Mathf.Clamp(v3.x, minX, maxX);
+
+			// Allows looking up and down
+			if (Input.GetKey(KeyCode.W))
+			{
+				v3.y += 0.3f;
+			}
+			else
+			{
+				v3.y -= 0.3f;
+			}
+
+			if (Input.GetKey(KeyCode.S))
+			{
+				v3.y -= 0.3f;
+			}
+			else
+			{
+				v3.y += 0.3f;
+			}
+
+			var clampX = Mathf.Clamp(v3.x, minX, maxX);
             var clampY = Mathf.Clamp(v3.y, minY, maxY);
             transform.position = new Vector3(clampX, clampY, -10f);
         }

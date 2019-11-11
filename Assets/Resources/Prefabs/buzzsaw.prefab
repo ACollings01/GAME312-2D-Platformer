@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1151009749}
   - component: {fileID: 1151009748}
   - component: {fileID: 3484235260590726694}
+  - component: {fileID: 6213319572237034337}
   m_Layer: 9
   m_Name: buzzsaw
   m_TagString: Untagged
@@ -246,3 +247,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationsPerMinute: 640
+--- !u!114 &6213319572237034337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284256661428964460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea20eabef119774abe9883205949299, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
