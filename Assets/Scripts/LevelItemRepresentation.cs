@@ -11,4 +11,8 @@ public class LevelItemRepresentation
     public int spriteOrder;
     public string spriteLayer;
     public Color spriteColour;
+	public float xDistance = 0.0f;
+	public float xSpeed = 0.0f;
+	public float yDistance = 0.0f;
+	public float ySpeed = 0.0f;
 }

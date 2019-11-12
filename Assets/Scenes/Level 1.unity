@@ -1965,6 +1965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camTarget: {fileID: 611115960}
   trackingSpeed: 7.8
+  cameraZDepth: 10
   minX: -100
   minY: -100
   maxX: 100
@@ -2608,7 +2609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5712a124d37fb5446bc97fdb74338b18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelName: 
+  levelName: Tutorial Level (Level 1)
 --- !u!4 &2016276390
 Transform:
   m_ObjectHideFlags: 0

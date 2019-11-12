@@ -3,7 +3,7 @@
 [Serializable]
 public class CameraSettingsRepresentation
 {
-    public float cameraTrackTarget;
+    public string cameraTrackTarget;
     public float trackingSpeed;
     public float cameraZDepth;
     public float minX;

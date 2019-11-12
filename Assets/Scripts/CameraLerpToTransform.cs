@@ -5,8 +5,8 @@ using UnityEngine;
 public class CameraLerpToTransform : MonoBehaviour
 {
     public Transform camTarget;
-    [Range(2.5f,10f)]
     public float trackingSpeed = 7.8f;
+	public float cameraZDepth = 10f;
     public float minX;
     public float minY;
     public float maxX;
@@ -17,7 +17,7 @@ public class CameraLerpToTransform : MonoBehaviour
         if (camTarget != null)
         {
             var newPos = Vector2.Lerp(transform.position, camTarget.position, Time.deltaTime * trackingSpeed);
-            var camPosition = new Vector3(newPos.x, newPos.y, -10f);
+            var camPosition = new Vector3(newPos.x, newPos.y, -cameraZDepth);
             var v3 = camPosition;
 
 			// Allows looking up and down

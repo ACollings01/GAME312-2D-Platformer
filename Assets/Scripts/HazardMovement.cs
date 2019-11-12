@@ -4,14 +4,10 @@ using UnityEngine;
 
 public class HazardMovement : MonoBehaviour
 {
-    [SerializeField]
-    private float xDistance = 0.0f;
-	[SerializeField]
-	private float xSpeed = 0.0f;
-	[SerializeField]
-	private float yDistance = 0.0f;
-	[SerializeField]
-	private float ySpeed = 0.0f;
+    public float xDistance = 0.0f;
+	public float xSpeed = 0.0f;
+	public float yDistance = 0.0f;
+	public float ySpeed = 0.0f;
 
 	private Vector3 pCurrent;
 	private Vector3 pOriginal;
