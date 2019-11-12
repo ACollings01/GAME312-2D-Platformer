@@ -30,16 +30,4 @@ public class Hazard : MonoBehaviour
             GameManager.instance.RestartLevel(1.25f);
         }
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

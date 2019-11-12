@@ -29,6 +29,72 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+	private void LoadLevelContent()
+	{
+		var existingLevelRoot = GameObject.Find("Level");
+		Destroy(existingLevelRoot);
+		var levelRoot = new GameObject("Level");
+
+		var levelFileJsonContent = File.ReadAllText(selectedLevel);
+		var levelData = JsonUtility.FromJson<LevelDataRepresentation>(levelFileJsonContent);
+
+		foreach (var li in levelData.levelItems)
+		{
+			var pieceResource = Resources.Load("Prefabs/" + li.prefabName);
+			if (pieceResource == null)
+			{
+				Debug.LogError("Cannot find resource: " + li.prefabName);
+			}
+
+			var piece = (GameObject)Instantiate(pieceResource, li.position, Quaternion.identity);
+			var pieceSprite = piece.GetComponent<SpriteRenderer>();
+			var pieceHM = piece.GetComponent<HazardMovement>();
+
+			if (pieceSprite != null)
+			{
+				pieceSprite.sortingOrder = li.spriteOrder;
+				pieceSprite.sortingLayerName = li.spriteLayer;
+				pieceSprite.color = li.spriteColour;
+			}
+
+			piece.transform.parent = levelRoot.transform;
+			piece.transform.position = li.position;
+			piece.transform.rotation = Quaternion.Euler(li.rotation.x, li.rotation.y, li.rotation.z);
+			piece.transform.localScale = li.scale;
+
+			// Sets movement variables for hazards that use that script
+			if (pieceHM != null)
+			{
+				pieceHM.xDistance = li.xDistance;
+				pieceHM.xSpeed = li.xSpeed;
+				pieceHM.yDistance = li.yDistance;
+				pieceHM.ySpeed = li.ySpeed;
+			}
+
+			if (piece == GameObject.Find("goal") || pieceResource == GameObject.Find("goal(Clone)"))
+			{
+				piece.AddComponent<Goal>();
+			}
+		}
+
+		var SoyBoy = GameObject.Find("SoyBoy(Clone)");
+		SoyBoy.transform.position = levelData.playerStartPosition;
+		Camera.main.transform.position = new Vector3(SoyBoy.transform.position.x, SoyBoy.transform.position.y, Camera.main.transform.position.z);
+
+		var camSettings = FindObjectOfType<CameraLerpToTransform>();
+
+		if (camSettings != null)
+		{
+			camSettings.cameraZDepth = levelData.cameraSettings.cameraZDepth;
+			camSettings.camTarget = SoyBoy.transform;
+			camSettings.maxX = levelData.cameraSettings.maxX;
+			camSettings.maxY = levelData.cameraSettings.maxY;
+			camSettings.minX = levelData.cameraSettings.minX;
+			camSettings.minY = levelData.cameraSettings.minY;
+			camSettings.trackingSpeed = levelData.cameraSettings.trackingSpeed;
+		}
+	}
+
 	private void SetLevelName(string levelFilePath)
 	{
 		selectedLevel = levelFilePath;
@@ -85,7 +151,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator RestartLevelDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
-        SceneManager.LoadScene("Level 2");
+		SceneManager.LoadScene("Game");
     }
 
 	public List<PlayerTimeEntry> LoadPreviousTimes()
@@ -138,9 +204,16 @@ public class GameManager : MonoBehaviour
 
 	private void OnSceneLoaded(Scene scene, LoadSceneMode loadsceneMode)
 	{
-		if (scene.name == "Level 2")
+		if (!string.IsNullOrEmpty(selectedLevel) && scene.name == "Game")
 		{
+			Debug.Log("Loading level content for: " + selectedLevel);
+			LoadLevelContent();
 			DisplayPreviousTimes();
+		}
+
+		if (scene.name == "Menu")
+		{
+			DiscoverLevels();
 		}
 	}
 
